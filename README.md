@@ -1,7 +1,10 @@
 # Pool control module
 
 ## Planned Features
- - [ ]  Circulation management
+ - [ ]  Circulation management  [On/Off, Speed via Frequency inverter]
+ - [ ]  Massage pump control [On/Off, Speed via Frequency inverter]
+ - [ ]  Counter current control [On/Off, Speed via Frequency inverter]
+ - [ ]  Salinator/Chlorinator support
  - [ ]  Heating management
  - [ ]  Temperature measurement
    -  [ ]  Technology room  temperature & humidity
