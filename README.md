@@ -1,1 +1,1 @@
-# Open-source-pool-control-module
+# Pool control module
