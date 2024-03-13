@@ -1,5 +1,5 @@
 # Pool control module
-
+Project stage: Planing / Information gathering
 ## Planned Features
  - [ ]  Circulation management  [On/Off, Speed via Frequency inverter]
  - [ ]  Massage pump control [On/Off, Speed via Frequency inverter]
