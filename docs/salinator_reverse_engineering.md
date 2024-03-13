@@ -1,4 +1,14 @@
 # Hardware
+| | |
+|----|----|
+|Device type|Chlorinator / Salinator / Salt water chlorine generator|
+|Manufacturer|Intex|
+|Model|26670|
+|URL|https://www.intexdevelopment.com/support/26670/productdetail?lst_lang=2|
+
+![image](https://github.com/aelias-eu/open-pool-control-module/assets/71124636/53268200-36d2-4510-a99d-1985ac8555df)
+
+
 The device has two PCBs (Printed Circuit Board). Let's call them the Control-Board (CB) and the Keyboard-Display-Board (KDB).
 Quick look at the Control-Board reveals that it is using an control chip [HT66F0185](https://datasheet.lcsc.com/lcsc/1810010214_Holtek-Semicon-HT66F0185_C81481.pdf) by Holtek, Which is a general purpose A/D MCU. But there is another interesting thing and that's the connection to the Keyboard-Display-Board:
 ![image](https://github.com/aelias-eu/open-pool-control-module/assets/71124636/3642bd01-eb4b-4c7a-8ae5-577d9a6d2d70)
