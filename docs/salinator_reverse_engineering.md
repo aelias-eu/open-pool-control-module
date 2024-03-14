@@ -84,6 +84,47 @@ So this mystery is solved. It is an I2C but it's documented like it's not :) We 
 Now we need to identify the which key sets which bit and which bit sets which segment/LED.
 
 ## Data identification
+I have used Arduino nano to send test commands via I2C because of the 5V level compatibility. With Voltage level shifter, you could use the ESP...
+
+Arduino code to test the LED outputs:
+```c++
+/*
+ Send data to the display and LEDS of the TM1650 based LED/Keyboard board from Intex Chlorinator
+*/
+
+#include <Wire.h>
+
+void setup() {
+  Wire.begin(); // join I2C bus (address optional for master)
+  Serial.begin(115200);
+  Serial.println("Reset LED displays");
+  Wire.beginTransmission(0x24); Wire.write(0x11); Wire.endTransmission();   // According to manual: It's the Command "Display ON, Brightness Level" 
+  Wire.beginTransmission(0x34); Wire.write(0);    Wire.endTransmission();  
+  Wire.beginTransmission(0x35); Wire.write(0);    Wire.endTransmission();    
+  Wire.beginTransmission(0x36); Wire.write(0);    Wire.endTransmission(); 
+  Wire.beginTransmission(0x37); Wire.write(0);    Wire.endTransmission();   
+}
+
+byte displayValue = 1;
+byte displaySettings=0x11;
+void loop() { 
+  Serial.print("Output data to 0x24: ");Serial.print(displaySettings);
+  Serial.print(", Display value: "); Serial.println(displayValue);
+  Wire.beginTransmission(0x24); Wire.write(displaySettings); Wire.endTransmission();  // Send setting (brightness & display on/off
+  //Wire.beginTransmission(0x34); Wire.write(displayValue);    Wire.endTransmission();  // Right LED Display
+  //Wire.beginTransmission(0x35); Wire.write(displayValue);    Wire.endTransmission();  // Left LED Display
+  Wire.beginTransmission(0x36); Wire.write(displayValue);    Wire.endTransmission();   // Status LEDs
+  //Wire.beginTransmission(0x37); Wire.write(displayValue);    Wire.endTransmission();  // This is unused
+  displayValue= displayValue << 1;
+  if (displayValue==0) {displayValue=1;}
+  delay(2000);
+}
+```
+This is the outcome:
+What they call in the datasheet Command 1 and COmmand 2, means: via I2C Send Data "Command2" to address 0x24:
+
+Binary data explanation  of Command2 a.k.a. System Command:
+![image](https://github.com/aelias-eu/open-pool-control-module/assets/71124636/80b40237-544a-4c44-95a7-5363728fda2c)
 
 
 
