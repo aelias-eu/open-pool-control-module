@@ -86,7 +86,7 @@ Now we need to identify the which key sets which bit and which bit sets which se
 ## Data identification
 I have used Arduino nano to send test commands via I2C because of the 5V level compatibility. With Voltage level shifter, you could use the ESP...
 
-Arduino code to test the LED outputs:
+Arduino code to test the LED outputs and keyboard in:
 ```c++
 /*
  Send data to the display and LEDS of the TM1650 based LED/Keyboard board from Intex Chlorinator
@@ -110,6 +110,8 @@ byte displaySettings=0x11;
 void loop() { 
   Serial.print("Output data to 0x24: ");Serial.print(displaySettings);
   Serial.print(", Display value: "); Serial.println(displayValue);
+  Wire.requestFrom(0x24,1);
+  byte key=Wire.read();
   Wire.beginTransmission(0x24); Wire.write(displaySettings); Wire.endTransmission();  // Send setting (brightness & display on/off
   //Wire.beginTransmission(0x34); Wire.write(displayValue);    Wire.endTransmission();  // Right LED Display
   //Wire.beginTransmission(0x35); Wire.write(displayValue);    Wire.endTransmission();  // Left LED Display
@@ -117,6 +119,28 @@ void loop() {
   //Wire.beginTransmission(0x37); Wire.write(displayValue);    Wire.endTransmission();  // This is unused
   displayValue= displayValue << 1;
   if (displayValue==0) {displayValue=1;}
+  if ( ( key & 0x40 )== 0x40 )
+   {
+      Serial.print("Key value: ");
+      switch (key & 0x3F){
+        case 0x0E: Serial.println("[LOCK]");
+                  break;
+        case 0x0C: Serial.println("[POWER]");
+                  break;
+        case 0x06: Serial.println("[TIME]");
+                  break;
+        case 0x04: Serial.println("[BOOST]");
+                  break;
+        case 0x34: Serial.println("[SWAP]");
+                  break;
+        case 0x3C: Serial.println("[POWER+BOOST]");
+                  break;
+        default : 
+              Serial.println((key & 0x3F));
+              break;
+      }
+   }
+
   delay(2000);
 }
 ```
