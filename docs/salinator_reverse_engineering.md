@@ -145,11 +145,16 @@ void loop() {
 }
 ```
 This is the outcome:
-What they call in the datasheet Command 1 and COmmand 2, means: via I2C Send Data "Command2" to address 0x24:
+What they call in the datasheet Command 1 and Command 2, means: via I2C Send Data "Command2" to address 0x24:
 
 Binary data explanation  of Command2 a.k.a. System Command:
 ![image](https://github.com/aelias-eu/open-pool-control-module/assets/71124636/80b40237-544a-4c44-95a7-5363728fda2c)
 
+### Possible problems
+The chip acts not as one I2C slave, but as 4 slaves with addresses 0x24,0x34,0x35,0x36 (in reality there are more addreses the chip is using, but these 4 are interesting for this case).
+
+ToDo:
+ - [ ] **Find out if it is possible on the ESP to emulate more than 1 slave on a single I2C interface.** It is possible on Arduino  [Example](https://github.com/alexisgaziello/TwoWireSimulator) via address masking and also on some other chips, but it is a non-standard approach. Maybe this will need a saparate module for the Salinator/Chlorinator communication.
 
 
 # Used tools
