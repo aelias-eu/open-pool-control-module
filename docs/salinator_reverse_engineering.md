@@ -81,7 +81,24 @@ Now, we will shift this to the left and add "1" as first bit. That would make b'
 
 So this mystery is solved. It is an I2C but it's documented like it's not :) We just have to keep that in mind when we try to communicate with that.
 
-Now we need to identify the which key sets which bit and which bit sets which segment/LED.
+Running an I2C scan example code ( Arduino IDE -> File - > Examples -> Wire -> i2c_scanner ) on Arduino Nano against this device shows following:
+
+```
+19:31:37.655 -> Scanning.
+19:31:37.655 -> I2C device at address 0x24  !
+19:31:37.688 -> I2C device at address 0x25  !
+19:31:37.721 -> I2C device at address 0x26  !
+19:31:37.754 -> I2C device at address 0x27  !
+19:31:37.788 -> I2C device at address 0x34  !
+19:31:37.821 -> I2C device at address 0x35  !
+19:31:37.854 -> I2C device at address 0x36  !
+19:31:37.887 -> I2C device at address 0x37  !
+19:31:37.887 -> done
+19:31:37.887 -> 
+```
+But for now we are interested only in the addresses 0x24, 0x34, 0x35 and 0x36 that were identified from the communication inspection.
+
+Now we need to identify which key sets which bit and which bit sets which segment/LED.
 
 ## Data identification
 I have used Arduino nano to send test commands via I2C because of the 5V level compatibility. With Voltage level shifter, you could use the ESP...
