@@ -30,7 +30,7 @@ My goal is to create this device as open hardware so anyone can extend this acco
  - [ ]  Counter current control [On/Off, Speed via Frequency inverter]
  - [ ]  Salinator/Chlorinator support
    - [ ]  [Intex 26670](docs/salinator_control.md)
-     - [x] [Reverse engineering](docs/salinator_reverse_engineering.md)
+     - [x] [Reverse engineering](docs/Intex_26670_reverse_engineering.md)
      - [ ]  Implement communication interface     
  - [ ]  Heating management
  - [ ]  Temperature measurement
