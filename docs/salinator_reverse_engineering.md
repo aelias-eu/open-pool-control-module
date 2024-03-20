@@ -180,3 +180,4 @@ ToDo:
  - Logic analyzer [LHT00SU1](https://sigrok.org/wiki/Noname_LHT00SU1)
  - Software [PulseView](https://sigrok.org/wiki/PulseView)
  - Spreadsheet [LibreOffice Calc](https://www.libreoffice.org/discover/calc/)
+ - Arduino Nano
